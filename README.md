@@ -205,18 +205,18 @@ Function recursiveBinSearch(arr() As Integer, x As Integer) As Integer
 Recursive Binary Search.
 
 ```
-Function BubbleSort(arr() As Integer / Double) As Integer / Double()
+Function BubbleSort(arr() As Integer / Double) As Integer() / Double()
 ```
 BubbleSort
 ```
-Function InsertionSort(arr() As Integer / Double) As Integer / Double()
+Function InsertionSort(arr() As Integer / Double) As Integer() / Double()
 ```
 Insertion Sort
 ```
-Function MergeSort(arr() As Integer / Double) As Integer / Double()
+Function MergeSort(arr() As Integer / Double) As Integer() / Double()
 ```
 MergeSort
 ```
-Function QuickSort(arr() As Integer / Double) As Integer / Double()
+Function QuickSort(arr() As Integer / Double) As Integer() / Double()
 ```
 QuickSort
