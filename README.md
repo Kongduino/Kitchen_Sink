@@ -89,8 +89,35 @@ void quickSortDouble(double array[], int low, int high);
 ```
 QuickSort for doubles.
 
+### Python
 
-### DEMO
+The library can be used with ctypes, as shown by `test_sink.py`.
+
+```python
+% python3 test_sink.py
+bubbleSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+insertionSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+mergeSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+quickSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+
+iterativeBinarySearch
+ • Element 40 is present at index 5
+ • Element 41 is not present in array!
+
+recursiveBinarySearch
+ • Element 40 is present at index 5
+ • Element 41 is not present in array!
+```
+
+## DEMO
 
 ```
 % make
