@@ -5,87 +5,87 @@ A C & Xojo library with various functions that could come in handy. Comes with C
 ### C API
 
 ```c
-* void hexDump(unsigned char *buf, long len);
+void hexDump(unsigned char *buf, long len);
 ```
 Self-explanatory
 
 ```c
-* unsigned long djb2(unsigned char *str, int len);
+unsigned long djb2(unsigned char *str, int len);
 ```
 djb2 hash.
 
 ```c
-* unsigned long sdbm(unsigned char *str, int len);
+unsigned long sdbm(unsigned char *str, int len);
 ```
 sdbm hash.
 
 ```c
-* unsigned long loselose(unsigned char *str, int len);
+unsigned long loselose(unsigned char *str, int len);
 ```
 lose lose hash.
 
 ```c
-* void fillRandom(unsigned char *buffer, unsigned int len);
+void fillRandom(unsigned char *buffer, unsigned int len);
 ```
 Fills a buffer with random numbers from `/dev/random`.
 
 ```c
-* void SieveOfEratosthenes(long n);
+void SieveOfEratosthenes(long n);
 ```
 Sieve of Eratosthenes.
 
 ```c
-* unsigned char isPrime(long n);
+unsigned char isPrime(long n);
 ```
 Uses a sieve of Eratosthenes to determine whether a number is a prime.
 
 ```c
-* int iterativeBinarySearch(int arr[], int low, int high, int x);
+int iterativeBinarySearch(int arr[], int low, int high, int x);
 ```
 Iterative Binary Search.
 
 ```c
-* int recursiveBinarySearch(int arr[], int low, int high, int x);
+int recursiveBinarySearch(int arr[], int low, int high, int x);
 ```
 Recursive Binary Search.
 
 ```c
-* void bubbleSortInt(int array[], int size);
+void bubbleSortInt(int array[], int size);
 ```
 BubbleSort for integers.
 
 ```c
-* void bubbleSortDouble(double array[], int size);
+void bubbleSortDouble(double array[], int size);
 ```
 BubbleSort for doubles.
 
 ```c
-* void insertionSortInt(int array[], int size);
+void insertionSortInt(int array[], int size);
 ```
 InsertionSort for integers.
 
 ```c
-* void insertionSortDouble(double array[], int size);
+void insertionSortDouble(double array[], int size);
 ```
 InsertionSort for doubles.
 
 ```c
-* void mergeSortInt(int arr[], int l, int r);
+void mergeSortInt(int arr[], int l, int r);
 ```
 MergeSort for integers.
 
 ```c
-* void mergeSortDouble(double arr[], int l, int r);
+void mergeSortDouble(double arr[], int l, int r);
 ```
 MergeSort for doubles.
 
 ```c
-* void quickSortInt(int array[], int low, int high);
+void quickSortInt(int array[], int low, int high);
 ```
 QuickSort for integers.
 
 ```c
-* void quickSortDouble(double array[], int low, int high);
+void quickSortDouble(double array[], int low, int high);
 ```
 QuickSort for doubles.
 
