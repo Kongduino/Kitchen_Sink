@@ -156,3 +156,28 @@ After:
 gcc -dynamic binary_search.o hashes.o sieve.o sort.o test.o -o kitchen_sink.dylib
 % 
 ```
+
+### Xojo API
+
+`Sub HexDump(mb As MemoryBlock)`
+Self-explanatory
+`Function djb2_hash(mb As MemoryBlock) As UInt32`
+djb2 hash, from the library.
+`Function djb2_native(mb As MemoryBlock) As UInt32`
+djb2 hash, in Xojo.
+`Function sdbm_hash(mb As MemoryBlock) As UInt32`
+sdbm hash, from the library.
+`Function sdbm_native(mb As MemoryBlock) As UInt32`
+sdbm hash, in Xojo.
+`Function loselose_hash(mb As MemoryBlock) As UInt32`
+lose lose hash, from the library.
+`Function loselose_native(mb As MemoryBlock) As UInt32`
+lose lose hash, in Xojo.
+`Sub FillRandomBuffer(buffer As MemoryBlock, len As Integer)`
+Fills a buffer with random numbers from `/dev/random`.
+`Function IsPrime(n As UInt64) As Boolean`
+Uses a sieve of Eratosthenes to determine whether a number is a prime.
+`Function iterBinSearch(arr() As Integer, x As Integer) As Integer`
+Iterative Binary Search.
+`Function recursiveBinSearch(arr() As Integer, x As Integer) As Integer`
+Recursive Binary Search.
