@@ -203,3 +203,12 @@ Iterative Binary Search.
 Function recursiveBinSearch(arr() As Integer, x As Integer) As Integer
 ```
 Recursive Binary Search.
+
+```Function BubbleSort(arr() As Integer / Double) As Double()```
+BubbleSort
+```Function InsertionSort(arr() As Integer / Double) As Double()```
+Insertion Sort
+```Function MergeSort(arr() As Integer / Double) As Double()```
+MergeSort
+```Function QuickSort(arr() As Integer / Double) As Double()```
+QuickSort
