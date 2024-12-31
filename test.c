@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>  // For boolean data type (bool, true, false)
 
 void hexDump(unsigned char *buf, long len);
 unsigned long djb2(unsigned char *str, int len);
@@ -18,6 +19,7 @@ void mergeSortDouble(double arr[], int l, int r);
 void quickSortInt(int array[], int low, int high);
 void quickSortDouble(double array[], int low, int high);
 int basicGCD(int a, int b);
+void Dijkstra(int V, int graph[V][V], int src, int *dist);
 
 int main(int argc, char **argv) {
   unsigned int len = 128;
@@ -159,6 +161,42 @@ int main(int argc, char **argv) {
   a = 99, b = 12;
   printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
 
+/* Let us create an example graph
+ https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+ */
+// Number of vertices in the graph
+#define myV 9
+  int graph[myV][myV] = {
+    { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+    { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+    { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+    { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+    { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+    { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
+    { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
+    { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+    { 0, 0, 2, 0, 0, 0, 6, 7, 0 }
+  };
+  printf("\n\nGraph:\n        0    1    2    3    4    5    7    8    9\n====================================================\n");
+  for (b = 0; b < myV; b++) {
+    printf(" %d |", b);
+    for (a = 0; a < myV; a++) {
+      printf("% 5d", graph[a][b]);
+    }
+    printf(" |\n");
+  }
+  printf("====================================================\n\n");
+  // Function call
+  int dist[myV], source = 0;
+  Dijkstra(myV, graph, source, dist);
+  printf("\nVertex \t\tDistance from source = %d\n", source);
+  for (int i = 0; i < myV; i++)
+    printf("   %d \t\t\t%d\n", i, dist[i]);
+  source = 3;
+  Dijkstra(myV, graph, source, dist);
+  printf("\nVertex \t\tDistance from source = %d\n", source);
+  for (int i = 0; i < myV; i++)
+    printf("   %d \t\t\t%d\n", i, dist[i]);
   printf("\n\n\n\n");
   return 0;
 }
