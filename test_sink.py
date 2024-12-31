@@ -80,4 +80,35 @@ a = 99
 b = 12
 print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
 
-print("\n\n\n\n");
+
+myV = 9
+graph = [
+   0, 4, 0, 0, 0, 0, 0, 8, 0,
+   4, 0, 8, 0, 0, 0, 0, 11, 0,
+   0, 8, 0, 7, 0, 4, 0, 0, 2,
+   0, 0, 7, 0, 9, 14, 0, 0, 0,
+   0, 0, 0, 9, 0, 10, 0, 0, 0,
+   0, 0, 4, 14, 10, 0, 2, 0, 0,
+   0, 0, 0, 0, 0, 2, 0, 1, 6,
+   8, 11, 0, 0, 0, 0, 1, 0, 7,
+   0, 0, 2, 0, 0, 0, 6, 7, 0
+]
+dist = [0] * myV
+distArr = (c_int * myV)(*dist)
+arr = (c_int * int(myV * myV))(*graph)
+source = 0
+kitchen_sink.Dijkstra(myV, arr, source, distArr)
+
+print("\n\nGraph:\n        0    1    2    3    4    5    7    8    9\n====================================================\n")
+for b in range(0, myV):
+  s = f" {b} |"
+  for a in range(0, myV):
+      s += f"{graph[a+myV*b]: 5}"
+  print(f"{s} |")
+print("====================================================\n\n")
+
+print("\nVertex \t\tDistance from source = {source}\n")
+for i in range(0, myV):
+  print(f"   {i} \t\t\t{distArr[i]}")
+
+print("\n\n\n\n")
