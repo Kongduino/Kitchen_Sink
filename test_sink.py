@@ -66,3 +66,18 @@ if (result == -1):
   print(f" • Element {query} is not present in array!")
 else:
   print(f" • Element {query} is present at index {result}")
+
+a = 10
+b = 15
+print(f"\nGCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+a = 35
+b = 10
+print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+a = 31
+b = 2
+print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+a = 99
+b = 12
+print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+
+print("\n\n\n\n");

@@ -48,3 +48,11 @@ unsigned char isPrime(long n) {
   free(prime);
   return x;
 }
+
+// https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/
+// Function to return gcd of a and b
+int basicGCD(int a, int b) {
+  if (a == 0)
+    return b;
+  return basicGCD(b % a, a);
+}

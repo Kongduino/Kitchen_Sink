@@ -17,6 +17,7 @@ void mergeSortInt(int arr[], int l, int r);
 void mergeSortDouble(double arr[], int l, int r);
 void quickSortInt(int array[], int low, int high);
 void quickSortDouble(double array[], int low, int high);
+int basicGCD(int a, int b);
 
 int main(int argc, char **argv) {
   unsigned int len = 128;
@@ -62,13 +63,13 @@ int main(int argc, char **argv) {
 
   printf("\nBefore Bubble sorting arr1:\n");
   printf(" • %d", arr1[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %d", arr1[ix]);
   }
   printf("\nAfter:\n");
   bubbleSortInt(arr1, n);
   printf(" • %d", arr1[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %d", arr1[ix]);
   }
   printf("\n");
@@ -76,13 +77,13 @@ int main(int argc, char **argv) {
   int arr11[] = { 89, 12, 33, 23, 127, 24, 10, 40 };
   printf("\nBefore Insertion sorting arr11:\n");
   printf(" • %d", arr11[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %d", arr11[ix]);
   }
   printf("\nAfter:\n");
   insertionSortInt(arr11, n);
   printf(" • %d", arr11[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %d", arr11[ix]);
   }
   printf("\n");
@@ -90,64 +91,73 @@ int main(int argc, char **argv) {
   int arr12[] = { 89, 12, 33, 23, 127, 24, 10, 40 };
   printf("\nBefore Merge sorting arr12:\n");
   printf(" • %d", arr12[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %d", arr12[ix]);
   }
   printf("\nAfter:\n");
-  mergeSortInt(arr12, 0, n-1);
+  mergeSortInt(arr12, 0, n - 1);
   printf(" • %d", arr12[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %d", arr12[ix]);
   }
   printf("\n");
 
   double arr2[] = { 2.1, 3.6, 1.4, 40.653, 40.642 };
   n = sizeof(arr2) / sizeof(arr2[0]);
-  
+
   printf("\nBefore Bubble sorting arr2:\n");
   printf(" • %.3f", arr2[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %.3f", arr2[ix]);
   }
   printf("\nAfter:\n");
   bubbleSortDouble(arr2, n);
   printf(" • %.3f", arr2[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %.3f", arr2[ix]);
   }
   printf("\n");
 
   double arr22[] = { 40.653, 2.1, 3.6, 1.4, 40.642 };
   n = sizeof(arr22) / sizeof(arr22[0]);
-  
+
   printf("\nBefore Insertion sorting arr22:\n");
   printf(" • %.3f", arr22[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %.3f", arr22[ix]);
   }
   printf("\nAfter:\n");
   insertionSortDouble(arr22, n);
   printf(" • %.3f", arr22[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %.3f", arr22[ix]);
   }
   printf("\n");
 
   double arr23[] = { 40.567, 2.12, 3.23, 1.34, 40.456 };
   n = sizeof(arr23) / sizeof(arr23[0]);
-  
+
   printf("\nBefore Quick sorting arr23:\n");
   printf(" • %.3lf", arr23[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %.3lf", arr23[ix]);
   }
   printf("\nAfter:\n");
-  quickSortDouble(arr23, 0, n-1);
+  quickSortDouble(arr23, 0, n - 1);
   printf(" • %.3lf", arr23[0]);
-  for (int ix = 1; ix < n; ix ++) {
+  for (int ix = 1; ix < n; ix++) {
     printf(", %.3lf", arr23[ix]);
   }
   printf("\n");
+
+  int a = 10, b = 15;
+  printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
+  a = 35, b = 10;
+  printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
+  a = 31, b = 2;
+  printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
+  a = 99, b = 12;
+  printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
 
   printf("\n\n\n\n");
   return 0;

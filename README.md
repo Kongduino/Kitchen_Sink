@@ -40,6 +40,11 @@ unsigned char isPrime(long n);
 Uses a sieve of Eratosthenes to determine whether a number is a prime.
 
 ```c
+int basicGCD(int a, int b) {
+```
+Calculates GCD of two integers.
+
+```c
 int iterativeBinarySearch(int arr[], int low, int high, int x);
 ```
 Iterative Binary Search.
@@ -178,6 +183,12 @@ iterativeBinarySearch
 recursiveBinarySearch
  • Element 40 is present at index 5
  • Element 41 is not present in array!
+
+GCD(10, 15) = 5
+GCD(35, 10) = 5
+GCD(31, 2) = 1
+GCD(99, 12) = 3
+
 % 
 ```
 
@@ -482,4 +493,10 @@ BubbleSort:
  • 2414.257
  • 2588.052
  • 3121.185
+
+GCD:
+ • GCD(10, 15) = 5
+ • GCD(35, 10) = 5
+ • GCD(31, 2) = 1
+ • GCD(99, 12) = 3
 ```
