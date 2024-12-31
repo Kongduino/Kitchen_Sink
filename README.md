@@ -101,25 +101,33 @@ The library can be used with ctypes, as shown by `test_sink.py`.
 ## DEMO
 
 ```
-% make
+Last login: Tue Dec 31 09:13:23 on ttys002
+dda@Didiers-MacBook-Pro Kitchen_Sink % make clean
+rm *.o *.dylib test_sink
+rm: *.o: No such file or directory
+make: *** [clean] Error 1
+dda@Didiers-MacBook-Pro Kitchen_Sink % make
 gcc -Wall -O3 -g -c *.c
 gcc *.o -o test_sink
+gcc -dynamic *.o -o kitchen_sink.dylib
+dda@Didiers-MacBook-Pro Kitchen_Sink % make test
+gcc -dynamic *.o -o kitchen_sink.dylib
 ./test_sink
    +------------------------------------------------+ +----------------+
    |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
    +------------------------------------------------+ +----------------+
-00.|13 73 55 77 65 06 43 bd 68 39 05 7f 76 33 29 c2 | |.sUwe.C.h9.v3).|
-01.|f0 9c 72 74 2a c7 da a8 e9 51 77 4d 58 3d de 5c | |..rt*....QwMX=.\|
-02.|cf 73 f0 06 60 03 7d e2 a4 77 4f 1b f3 b0 2d c1 | |.s..`.}..wO...-.|
-03.|6b 9d 45 90 bc 38 24 63 b3 2c 2f 58 85 ef 9c b6 | |k.E..8$c.,/X....|
-04.|4e b9 c2 c8 37 e7 fe 1c c8 dd 08 01 9d 8b 44 cf | |N...7.........D.|
-05.|7b 82 80 1e cc 5f 7b 56 e9 e2 c3 55 e3 fc 54 07 | |{...._{V...U..T.|
-06.|54 15 b3 d2 b5 ae 9c 26 a2 cb e5 80 41 20 dd ba | |T......&....A ..|
-07.|27 05 dc 1e 52 f4 89 38 d4 90 e1 64 43 2e 8b 00 | |'...R..8...dC...|
+00.|6f b9 8d ea e9 54 23 44 52 00 91 50 74 f2 f4 52 | |o....T#DR..Pt..R|
+01.|8e dd 7b 5e 76 0a 00 00 00 00 00 00 00 00 00 00 | |..{^v...........|
+02.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
+03.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
+04.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
+05.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
+06.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
+07.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
    +------------------------------------------------+ +----------------+
-djb2: 0x82D638BB938E1D36
-sdbm: 0xF881FADAA059DCEB
-lose lose: 0x00003ED1
+djb2: 0xAA3621E4174F1A2B
+sdbm: 0xC110E6C744E439C2
+lose lose: 0x00000AE6
 
 764587 is prime
 
@@ -160,35 +168,10 @@ Before Quick sorting arr23:
  • 40.567, 2.120, 3.230, 1.340, 40.456
 After:
  • 1.340, 2.120, 3.230, 40.456, 40.567
-
-gcc -dynamic binary_search.o hashes.o sieve.o sort.o test.o -o kitchen_sink.dylib
-% python3 test_sink.py
-bubbleSortInt
-[89, 12, 33, 23, 127, 24, 10, 40]
-[10, 12, 23, 24, 33, 40, 89, 127]
-insertionSortInt
-[89, 12, 33, 23, 127, 24, 10, 40]
-[10, 12, 23, 24, 33, 40, 89, 127]
-mergeSortInt
-[89, 12, 33, 23, 127, 24, 10, 40]
-[10, 12, 23, 24, 33, 40, 89, 127]
-quickSortInt
-[89, 12, 33, 23, 127, 24, 10, 40]
-[10, 12, 23, 24, 33, 40, 89, 127]
-
-iterativeBinarySearch
- • Element 40 is present at index 5
- • Element 41 is not present in array!
-
-recursiveBinarySearch
- • Element 40 is present at index 5
- • Element 41 is not present in array!
-
 GCD(10, 15) = 5
 GCD(35, 10) = 5
 GCD(31, 2) = 1
 GCD(99, 12) = 3
-
 
 
 Graph:
@@ -228,6 +211,61 @@ Vertex 		Distance from source = 3
    7 			14
    8 			9
 
+python3 ./test_sink.py
+bubbleSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+insertionSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+mergeSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+quickSortInt
+[89, 12, 33, 23, 127, 24, 10, 40]
+[10, 12, 23, 24, 33, 40, 89, 127]
+
+iterativeBinarySearch
+ • Element 40 is present at index 5
+ • Element 41 is not present in array!
+
+recursiveBinarySearch
+ • Element 40 is present at index 5
+ • Element 41 is not present in array!
+
+GCD(10, 15) = 5
+GCD(35, 10) = 5
+GCD(31, 2) = 1
+GCD(99, 12) = 3
+
+
+Graph:
+        0    1    2    3    4    5    7    8    9
+====================================================
+
+ 0 |    0    4    0    0    0    0    0    8    0 |
+ 1 |    4    0    8    0    0    0    0   11    0 |
+ 2 |    0    8    0    7    0    4    0    0    2 |
+ 3 |    0    0    7    0    9   14    0    0    0 |
+ 4 |    0    0    0    9    0   10    0    0    0 |
+ 5 |    0    0    4   14   10    0    2    0    0 |
+ 6 |    0    0    0    0    0    2    0    1    6 |
+ 7 |    8   11    0    0    0    0    1    0    7 |
+ 8 |    0    0    2    0    0    0    6    7    0 |
+====================================================
+
+
+Vertex 		Distance from source = {source}
+
+   0 			0
+   1 			4
+   2 			12
+   3 			19
+   4 			21
+   5 			11
+   6 			9
+   7 			8
+   8 			14
 % 
 ```
 
