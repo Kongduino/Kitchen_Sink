@@ -1,7 +1,9 @@
 // C program to implement iterative Binary Search
 #include <stdio.h>
-#include <stdbool.h> // For boolean data type (bool, true, false)
+#include <stdbool.h>  // For boolean data type (bool, true, false)
 #include <limits.h>
+
+void quickSortInt(int array[], int low, int high);
 
 // An iterative binary search function.
 int iterativeBinarySearch(int arr[], int low, int high, int x) {
@@ -57,7 +59,7 @@ int minDistance(int dist[], bool sptSet[], int V) {
 // Function that implements Dijkstra's single source
 // shortest path algorithm for a graph represented using
 // adjacency matrix representation
-void Dijkstra(int V, int graph[V][V], int src, int *dist) {
+void Dijkstra(int V, int graph[V][V], int src, int* dist) {
   // The output array. dist[i] will hold the // shortest
   // distance from src to i
   bool sptSet[V];
@@ -84,5 +86,44 @@ void Dijkstra(int V, int graph[V][V], int src, int *dist) {
       // smaller than current value of dist[v]
       if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v])
         dist[v] = dist[u] + graph[u][v];
+  }
+}
+
+// Comparator function to use in sorting
+int comparator(const void* p1, const void* p2) {
+  const int(*x)[3] = p1;
+  const int(*y)[3] = p2;
+  return (*x)[2] - (*y)[2];
+}
+
+// Initialization of parent[] and rank[] arrays
+void makeSet(int parent[], int rank[], int n) {
+  for (int i = 0; i < n; i++) {
+    parent[i] = i;
+    rank[i] = 0;
+  }
+}
+
+// Function to find the parent of a node
+int findParent(int parent[], int component) {
+  if (parent[component] == component)
+    return component;
+  return parent[component] = findParent(parent, parent[component]);
+}
+
+// Function to unite two sets
+void unionSet(int u, int v, int parent[], int rank[], int n) {
+  // Finding the parents
+  u = findParent(parent, u);
+  v = findParent(parent, v);
+  if (rank[u] < rank[v]) {
+    parent[u] = v;
+  } else if (rank[u] > rank[v]) {
+    parent[v] = u;
+  } else {
+    parent[v] = u;
+    // Since the rank increases if
+    // the ranks of two sets are same
+    rank[u]++;
   }
 }

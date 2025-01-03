@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>  // For boolean data type (bool, true, false)
+#include "compression.h"
+#include "dict.h"
 
 void hexDump(unsigned char *buf, long len);
 unsigned long djb2(unsigned char *str, int len);
@@ -20,6 +22,10 @@ void quickSortInt(int array[], int low, int high);
 void quickSortDouble(double array[], int low, int high);
 int basicGCD(int a, int b);
 void Dijkstra(int V, int graph[V][V], int src, int *dist);
+void printHCodes(struct MinHNode *root, char arr[], int top);
+struct MinHNode *buildHuffmanTree(char item[], int freq[], int size);
+void flzCompress(char *inFile, char *outFile);
+void flzDecompress(char *inFile, char *outFile);
 
 int main(int argc, char **argv) {
   unsigned int len = 128;
@@ -36,8 +42,10 @@ int main(int argc, char **argv) {
   hash = loselose(buffer, len);
   printf("lose lose: 0x%08lX\n", hash);
 
-  unsigned char rslt = isPrime(764587);
+  unsigned char rslt = isPrime(764587l);
   printf("\n%ld is %s\n", 764587l, rslt == 1 ? "prime" : "not prime");
+  rslt = isPrime(65536l);
+  printf("%ld is %s\n", 65536l, rslt == 1 ? "prime" : "not prime");
 
   printf("\niterativeBinarySearch\n");
   int arr0[] = { 2, 3, 4, 10, 40 };
@@ -153,7 +161,7 @@ int main(int argc, char **argv) {
   printf("\n");
 
   int a = 10, b = 15;
-  printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
+  printf("\nGCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
   a = 35, b = 10;
   printf("GCD(%d, %d) = %d\n", a, b, basicGCD(a, b));
   a = 31, b = 2;
@@ -197,6 +205,74 @@ int main(int argc, char **argv) {
   printf("\nVertex \t\tDistance from source = %d\n", source);
   for (int i = 0; i < myV; i++)
     printf("   %d \t\t\t%d\n", i, dist[i]);
+
+  char arr[] = "Konngduino";
+  int freq[] = { 5, 1, 6, 3 };
+  int size = sizeof(arr) / sizeof(arr[0]) - 1;
+  printf("\n\n Char | Huffman code\n------|-------------\n");
+  struct MinHNode *root = buildHuffmanTree(arr, freq, size);
+  int top = 0;
+  printHCodes(root, arr, top);
+  printf("------|-------------\n");
+
+  printf("\nCompressing kitchen_sink.dylib\n");
+  flzCompress("/tmp/kitchen_sink.dylib", "/tmp/kitchen_sink.flz");
+  printf("\nDecompressing kitchen_sink.flz\n");
+  flzDecompress("/tmp/kitchen_sink.flz", "/tmp/kitchen_sink.so");
+
+  // https://github.com/TheAlgorithms/C/
+  printf("\n Dictionaries\n==============\n");
+  Dictionary *testObj1;
+  Dictionary *testObj2;
+  int value1 = 28;
+  int value2 = 56;
+  testObj1 = create_dict();
+  testObj2 = create_dict();
+  add_item_label(testObj1, "age", &value1);
+  add_item_label(testObj1, "name", "Christian");
+  add_item_label(testObj2, "age", &value2);
+  add_item_label(testObj2, "name", "Bobby");
+  /*
+        test for function add_item_label
+        attention:
+        The void* pointer must be converted into an int* pointer.
+        After that you can dereference it.
+    */
+  printf(
+    "My age is %d, and my name is %s.\n",
+    *((int *)get_element_label(testObj1, "age")),
+    (char*)get_element_label(testObj1, "name"));
+  printf(
+    "My age is %d, and my name is %s.\n",
+    *((int *)get_element_label(testObj2, "age")),
+    (char*)get_element_label(testObj2, "name"));
+  /* test for function add_item_index */
+  if (!add_item_index(testObj1, 0, &value1)) {
+    printf("%s's age at index %d is %d\n",
+    (char*)get_element_label(testObj1, "name"),
+    0,
+    *((int *)get_element_index(testObj1, 0)));
+  }
+  if (!add_item_index(testObj2, 0, &value2)) {
+    printf("%s's age at index %d is %d\n",
+    (char*)get_element_label(testObj2, "name"),
+    0,
+    *((int *)get_element_index(testObj2, 0)));
+  }
+  /* error scenario */
+  if (get_element_label(testObj2, "salary") == NULL) {
+    printf("No entry for label `salary`\n");
+  } else {
+    printf(
+      "%s's salary is %d.\n",
+      (char*)get_element_label(testObj2, "name"),
+      *((int *)get_element_label(testObj2, "salary")));
+  }
+  /* tidy up */
+  destroy(testObj1);
+  destroy(testObj2);
+  printf("Yeah, yeah, yeah, I know... Dictionaries exist in Xojo and Python...\n");
+
   printf("\n\n\n\n");
   return 0;
 }
