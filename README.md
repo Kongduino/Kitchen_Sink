@@ -2,134 +2,114 @@
 
 A C & Xojo library with various functions that could come in handy. Comes with C test code, and a Xojo test application.
 
-### C API
+## C API
 
-```c
-void hexDump(unsigned char *buf, long len);
-```
-Self-explanatory
-
-```c
-unsigned long djb2(unsigned char *str, int len);
-```
-djb2 hash.
-
-```c
-unsigned long sdbm(unsigned char *str, int len);
-```
-sdbm hash.
-
-```c
-unsigned long loselose(unsigned char *str, int len);
-```
-lose lose hash.
-
-```c
-void fillRandom(unsigned char *buffer, unsigned int len);
-```
-Fills a buffer with random numbers from `/dev/random`.
-
-```c
-void SieveOfEratosthenes(long n);
-```
-Sieve of Eratosthenes.
-
-```c
-unsigned char isPrime(long n);
-```
-Uses a sieve of Eratosthenes to determine whether a number is a prime.
-
-```c
-int basicGCD(int a, int b) {
-```
-Calculates GCD of two integers.
-
-```c
-int iterativeBinarySearch(int arr[], int low, int high, int x);
-```
-Iterative Binary Search.
-
-```c
-int recursiveBinarySearch(int arr[], int low, int high, int x);
-```
-Recursive Binary Search.
-
-```c
-void bubbleSortInt(int array[], int size);
-```
-BubbleSort for integers.
-
-```c
-void bubbleSortDouble(double array[], int size);
-```
-BubbleSort for doubles.
-
-```c
-void insertionSortInt(int array[], int size);
-```
-InsertionSort for integers.
-
-```c
-void insertionSortDouble(double array[], int size);
-```
-InsertionSort for doubles.
-
-```c
-void mergeSortInt(int arr[], int l, int r);
-```
-MergeSort for integers.
-
-```c
-void mergeSortDouble(double arr[], int l, int r);
-```
-MergeSort for doubles.
+### Binary Search
 
 ```c
 void quickSortInt(int array[], int low, int high);
+int iterativeBinarySearch(int arr[], int low, int high, int x);
+int recursiveBinarySearch(int arr[], int low, int high, int x);
+int minDistance(int dist[], bool sptSet[], int V);
+void Dijkstra(int V, int graph[V][V], int src, int* dist);
 ```
-QuickSort for integers.
+
+### Compression
 
 ```c
+void printArray(int arr[], int n);
+void swapMinHNode(struct MinHNode **a, struct MinHNode **b);
+void minHeapify(struct MinHeap *minHeap, int idx);
+int checkSizeOne(struct MinHeap *minHeap);
+struct MinHNode *extractMin(struct MinHeap *minHeap);
+void insertMinHeap(struct MinHeap *minHeap, struct MinHNode *minHeapNode);
+void buildMinHeap(struct MinHeap *minHeap);
+int isLeaf(struct MinHNode *root);
+struct MinHeap *createAndBuildMinHeap(char item[], int freq[], int size);
+struct MinHNode *buildHuffmanTree(char item[], int freq[], int size);
+void printHCodes(struct MinHNode *root, char arr[], int top);
+```
+
+### Dict
+
+```c
+Dictionary *create_dict(void);
+int add_item_label(Dictionary *, char label[], void *);
+int add_item_index(Dictionary *, int index, void *);
+void *get_element_label(Dictionary *, char[]);
+void *get_element_index(Dictionary *, int);
+void destroy(Dictionary *);
+```
+
+### Hashes
+
+```c
+void fillRandom(unsigned char *buffer, unsigned int len);
+void hexDump(unsigned char *buf, long len);
+unsigned long djb2(unsigned char *str, int len);
+unsigned long sdbm(unsigned char *str, int len);
+unsigned long loselose(unsigned char *str, int len);
+void MD5Init(MD5_CTX *);
+void MD5Update(MD5_CTX *, unsigned char *, unsigned int);
+void MD5Final(unsigned char *, MD5_CTX *);
+static void MD5Transform(UINT4[4], unsigned char[64]);
+static void Encode(unsigned char *, UINT4 *, unsigned int);
+static void Decode(UINT4 *, unsigned char *, unsigned int);
+```
+
+### Maths
+
+```c
+void SieveOfEratosthenes(long n);
+unsigned char isPrime(long n);
+int basicGCD(int a, int b);
+int basicLCM(int a, int b);
+bool isLeapYear(int year);
+double factorial(int n);
+float haversine(float lat1, float lon1, float lat2, float lon2, bool metric);
+float toRad(float x);
+```
+
+### Sort
+
+```c
+void bubbleSortInt(int array[], int size);
+void bubbleSortDouble(double array[], int size);
+void insertionSortInt(int array[], int size);
+void insertionSortDouble(double array[], int size);
+void mergeInt(int arr[], int p, int q, int r);
+void mergeSortInt(int arr[], int l, int r);
+void mergeDouble(double arr[], int p, int q, int r);
+void mergeSortDouble(double arr[], int l, int r);
+int qsPartitionInt(int array[], int low, int high);
+void quickSortInt(int array[], int low, int high);
+int qsPartitionDouble(double array[], int low, int high);
 void quickSortDouble(double array[], int low, int high);
+int getMaxInt(int array[], int n);
 ```
-QuickSort for doubles.
 
-### Python
-
-The library can be used with ctypes, as shown by `test_sink.py`.
-
-## DEMO
+## Xojo Demo
 
 ```
-Last login: Tue Dec 31 09:13:23 on ttys002
-dda@Didiers-MacBook-Pro Kitchen_Sink % make clean
-rm *.o *.dylib test_sink
-rm: *.o: No such file or directory
-make: *** [clean] Error 1
-dda@Didiers-MacBook-Pro Kitchen_Sink % make
-gcc -Wall -O3 -g -c *.c
-gcc *.o -o test_sink
-gcc -dynamic *.o -o kitchen_sink.dylib
-dda@Didiers-MacBook-Pro Kitchen_Sink % make test
-gcc -dynamic *.o -o kitchen_sink.dylib
-./test_sink
+% ./test_sink
    +------------------------------------------------+ +----------------+
    |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
    +------------------------------------------------+ +----------------+
-00.|6f b9 8d ea e9 54 23 44 52 00 91 50 74 f2 f4 52 | |o....T#DR..Pt..R|
-01.|8e dd 7b 5e 76 0a 00 00 00 00 00 00 00 00 00 00 | |..{^v...........|
-02.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
-03.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
-04.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
-05.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
-06.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
-07.|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | |................|
+00.|1b af 82 dc 86 1f dd 87 e1 bb 2f 2e fb f6 20 82 | |........../... .|
+01.|69 68 03 64 41 50 ff 79 0b b5 af f6 c3 07 0e 64 | |ih.dAP.y.......d|
+02.|38 3f 49 73 50 c1 51 df c4 f2 bf 25 23 0b 38 77 | |8?IsP.Q....%#.8w|
+03.|9d 76 d3 13 cd a1 e5 a5 67 f8 62 80 99 f3 f8 4b | |.v......g.b....K|
+04.|b8 b4 9c 09 91 7a be 26 a7 b5 c7 b9 ac 5e 80 e5 | |.....z.&.....^..|
+05.|49 5e e2 c1 5b af 6f fa 63 19 99 34 09 f6 c2 dd | |I^..[.o.c..4....|
+06.|dc be 59 22 f7 df 9b 3b a8 47 f7 b2 6e 91 8b 50 | |..Y"...;.G..n..P|
+07.|a8 b1 18 0f 75 a9 8a 50 b5 94 bb e0 c4 2f 01 00 | |....u..P...../..|
    +------------------------------------------------+ +----------------+
-djb2: 0xAA3621E4174F1A2B
-sdbm: 0xC110E6C744E439C2
-lose lose: 0x00000AE6
+djb2: 0xFFA1BC019686B7C2
+sdbm: 0x74EEE863E93AA729
+lose lose: 0x000042FD
 
 764587 is prime
+65536 is not prime
 
 iterativeBinarySearch
  • Element 10 is present at index 3
@@ -155,7 +135,7 @@ After:
  • 10, 12, 23, 24, 33, 40, 89, 127
 
 Before Bubble sorting arr2:
- • 2.100, 3.600, 1.400, 40.653, 40.642
+ • 40.653, 2.100, 3.600, 1.400, 40.642
 After:
  • 1.400, 2.100, 3.600, 40.642, 40.653
 
@@ -165,13 +145,18 @@ After:
  • 1.400, 2.100, 3.600, 40.642, 40.653
 
 Before Quick sorting arr23:
- • 40.567, 2.120, 3.230, 1.340, 40.456
+ • 40.653, 2.100, 3.600, 1.400, 40.642
 After:
- • 1.340, 2.120, 3.230, 40.456, 40.567
+ • 1.400, 2.100, 3.600, 40.642, 40.653
+
 GCD(10, 15) = 5
+LCM(10, 15) = 30
 GCD(35, 10) = 5
+LCM(35, 10) = 70
 GCD(31, 2) = 1
+LCM(31, 2) = 62
 GCD(99, 12) = 3
+LCM(99, 12) = 396
 
 
 Graph:
@@ -211,7 +196,103 @@ Vertex 		Distance from source = 3
    7 			14
    8 			9
 
-python3 ./test_sink.py
+
+ Char | Huffman code
+------|-------------
+  n   | 0000
+  d   | 00010000
+  g   | 000100010
+  o   | 000100011
+  o   | 0001001
+  n   | 000101
+  K   | 00011
+  n   | 001
+  i   | 01
+  u   | 1
+------|-------------
+
+Compressing kitchen_sink.dylib
+
+Decompressing kitchen_sink.flz
+
+ Dictionaries
+==============
+My age is 28, and my name is Christian.
+My age is 56, and my name is Bobby.
+Christian's age at index 0 is 28
+Bobby's age at index 0 is 56
+No entry for label `salary`
+Yeah, yeah, yeah, I know... Dictionaries exist in Xojo and Python...
+
+Leap Years:
+==============
+Is 1900 a leap year: no
+Is 1967 a leap year: no
+Is 1954 a leap year: no
+Is 1988 a leap year: yes
+Is 2000 a leap year: yes
+Is 2024 a leap year: yes
+
+Leap Years:
+==============
+Fact(-1): error!
+Fact(2): 2.000000
+Fact(5): 120.000000
+Fact(8): 40320.000000
+Fact(11): 39916800.000000
+Fact(14): 87178291200.000000
+Fact(17): 355687428096000.000000
+Fact(20): 2432902008176640000.000000
+Fact(23): 25852016738884978212864.000000
+Fact(26): 403291461126605650322784256.000000
+Fact(29): 8841761993739700772720181510144.000000
+Fact(32): 263130836933693517766352317727113216.000000
+Fact(35): 10333147966386144222209170348167175077888.000000
+Fact(38): 523022617466601037913697377988137380787257344.000000
+Fact(41): 33452526613163802763987613764361857922667238129664.000000
+Fact(44): 2658271574788448529134213028096241889243150262529425408.000000
+
+HAVERSINE:
+=============
+distance between 22.400000, 113.900002 and 22.400000, 114.000000:
+ • 10.28 km for normal people,
+ • or for Muricans, 163.72 Boeing 787-9 airplanes (6.39 mi)
+
+MD5 TEST:
+Source:
+		 This is a short 32-char message
+MD5 Hash:
+   +------------------------------------------------+ +----------------+
+   |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
+   +------------------------------------------------+ +----------------+
+00.|4e fc 57 d3 68 b5 59 e9 d2 9a 4a 92 f7 79 04 1a | |N.W.h.Y...J..y..|
+   +------------------------------------------------+ +----------------+
+
+Source:
+   +------------------------------------------------+ +----------------+
+   |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
+   +------------------------------------------------+ +----------------+
+00.|1b af 82 dc 86 1f dd 87 e1 bb 2f 2e fb f6 20 82 | |........../... .|
+01.|69 68 03 64 41 50 ff 79 0b b5 af f6 c3 07 0e 64 | |ih.dAP.y.......d|
+02.|38 3f 49 73 50 c1 51 df c4 f2 bf 25 23 0b 38 77 | |8?IsP.Q....%#.8w|
+03.|9d 76 d3 13 cd a1 e5 a5 67 f8 62 80 99 f3 f8 4b | |.v......g.b....K|
+04.|b8 b4 9c 09 91 7a be 26 a7 b5 c7 b9 ac 5e 80 e5 | |.....z.&.....^..|
+05.|49 5e e2 c1 5b af 6f fa 63 19 99 34 09 f6 c2 dd | |I^..[.o.c..4....|
+06.|dc be 59 22 f7 df 9b 3b a8 47 f7 b2 6e 91 8b 50 | |..Y"...;.G..n..P|
+07.|a8 b1 18 0f 75 a9 8a 50 b5 94 bb e0 c4 2f 01 00 | |....u..P...../..|
+   +------------------------------------------------+ +----------------+
+MD5 Hash:
+   +------------------------------------------------+ +----------------+
+   |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
+   +------------------------------------------------+ +----------------+
+00.|71 5a 4d a5 cf 2c db 0c 9e bd d5 3b f5 15 ce de | |qZM..,.....;....|
+   +------------------------------------------------+ +----------------+
+```
+
+## Python Demo
+
+```
+% python3 ./test_sink.py
 bubbleSortInt
 [89, 12, 33, 23, 127, 24, 10, 40]
 [10, 12, 23, 24, 33, 40, 89, 127]
@@ -255,6 +336,7 @@ Graph:
 ====================================================
 
 
+
 Vertex 		Distance from source = {source}
 
    0 			0
@@ -266,316 +348,4 @@ Vertex 		Distance from source = {source}
    6 			9
    7 			8
    8 			14
-% 
-```
-
-![graph](Dijkstras-Algorithm.jpg)
-
-### Xojo API
-
-```
-Sub HexDump(mb As MemoryBlock)
-```
-Self-explanatory
-```
-Function djb2_hash(mb As MemoryBlock) As UInt32
-```
-djb2 hash, from the library.
-```
-Function djb2_native(mb As MemoryBlock) As UInt32
-```
-djb2 hash, in Xojo.
-```
-Function sdbm_hash(mb As MemoryBlock) As UInt32
-```
-sdbm hash, from the library.
-```
-Function sdbm_native(mb As MemoryBlock) As UInt32
-```
-sdbm hash, in Xojo.
-```
-Function loselose_hash(mb As MemoryBlock) As UInt32
-```
-lose lose hash, from the library.
-```
-Function loselose_native(mb As MemoryBlock) As UInt32
-```
-lose lose hash, in Xojo.
-```
-Sub FillRandomBuffer(buffer As MemoryBlock, len As Integer)
-```
-Fills a buffer with random numbers from `/dev/random`.
-```
-Function IsPrime(n As UInt64) As Boolean
-```
-Uses a sieve of Eratosthenes to determine whether a number is a prime.
-```
-Function iterBinSearch(arr() As Integer, x As Integer) As Integer
-```
-Iterative Binary Search.
-```
-Function recursiveBinSearch(arr() As Integer, x As Integer) As Integer
-```
-Recursive Binary Search.
-
-```
-Function BubbleSort(arr() As Integer / Double) As Integer() / Double()
-```
-BubbleSort
-```
-Function InsertionSort(arr() As Integer / Double) As Integer() / Double()
-```
-Insertion Sort
-```
-Function MergeSort(arr() As Integer / Double) As Integer() / Double()
-```
-MergeSort
-```
-Function QuickSort(arr() As Integer / Double) As Integer() / Double()
-```
-QuickSort
-
-### DEMO
-
-```
-% ./Kitchen_Sink_test
-Installing Lib
-Building Buffer
-Displaying Buffer
-   +------------------------------------------------+ +----------------+
-   |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
-   +------------------------------------------------+ +----------------+
-00.|02 e9 59 3d 1f a3 63 dd 79 16 22 9a b4 ab 68 db | |..Y=..c.y."...h.|
-01.|e0 d9 95 e8 1c e4 7c 94 6f bd 90 53 a5 6a 82 f5 | |......|.o..S.j..|
-02.|87 85 49 dc da 3c 1c 33 07 ad 40 07 a2 d0 f2 7d | |..I..<.3..@....}|
-03.|82 1b e2 d3 65 13 a8 9b 03 c0 7f fc 48 5a db 00 | |....e......HZ..|
-   +------------------------------------------------+ +----------------+
-
- • djb2 hash
-djb2: 0x1BC2400A
- • djb2 native hash
-djb2: 0x1BC2400A
- • Match!
-
- • sdbm hash
-sdbm: 0x21806989
- • sdbm native hash
-sdbm: 0x21806989
- • Match!
-
- • loselose hash
-loselose: 0x2085
- • loselose native hash
-loselose: 0x2085
- • Match!
-
-97 is prime!
-98 is not prime!
-
-ITERATIVE BINARY SEARCH:
-Looking for 10:
- • 1075 µs
- • 10 found at position 2 [10]
-Looking for 41:
- • 23 µs
- • 41: not found!
-
-RECURSIVE BINARY SEARCH:
-Looking for 40:
- • 17 microseconds
- • 40 found at position 3 [40]
-Looking for 41:
- • 24 microseconds
- • 41: not found!
-
-BubbleSort:
- Before:
- • -1174
- • 22406
- • 12172
- • 4101
- • -925
- • 573
- • 3969
- • 17914
- • 26638
- • 19808
- • 30500
- • 805
- • 31285
- • 29268
- • 7157
- • 5356
- • 15 microseconds
- After:
- • -1174
- • -925
- • 573
- • 805
- • 3969
- • 4101
- • 5356
- • 7157
- • 12172
- • 17914
- • 19808
- • 22406
- • 26638
- • 29268
- • 30500
- • 31285
-
-InsertionSort:
- Before:
- • 3969
- • 805
- • 17914
- • 5356
- • 12172
- • 4101
- • 19808
- • 30500
- • 22406
- • -1174
- • 26638
- • 7157
- • -925
- • 573
- • 29268
- • 31285
- • 14 microseconds
- After:
- • -1174
- • -925
- • 573
- • 805
- • 3969
- • 4101
- • 5356
- • 7157
- • 12172
- • 17914
- • 19808
- • 22406
- • 26638
- • 29268
- • 30500
- • 31285
-
-MergeSort:
- Before:
- • 26638
- • 31285
- • 12172
- • 5356
- • 7157
- • -1174
- • 4101
- • 29268
- • -925
- • 30500
- • 17914
- • 805
- • 3969
- • 19808
- • 22406
- • 573
- • 15 microseconds
- After:
- • -1174
- • -925
- • 573
- • 805
- • 3969
- • 4101
- • 5356
- • 7157
- • 12172
- • 17914
- • 19808
- • 22406
- • 26638
- • 29268
- • 30500
- • 31285
-
-QuickSort:
- Before:
- • -925
- • 26638
- • 5356
- • 3969
- • 31285
- • 7157
- • 22406
- • 573
- • 805
- • 29268
- • 19808
- • 30500
- • -1174
- • 4101
- • 12172
- • 17914
- • 13 microseconds
- After:
- • -1174
- • -925
- • 573
- • 805
- • 3969
- • 4101
- • 5356
- • 7157
- • 12172
- • 17914
- • 19808
- • 22406
- • 26638
- • 29268
- • 30500
- • 31285
-
-BubbleSort:
- Before:
- • -1382.329
- • -376.8072
- • -30.72289
- • 425.3012
- • 373.5944
- • 3121.185
- • 2588.052
- • -2095.382
- • -2824.498
- • -3064.659
- • 409.9398
- • 2414.257
- • 1896.988
- • -1875.1
- • -2173.594
- • -106.4257
- • 17 microseconds
- After:
- • -3064.659
- • -2824.498
- • -2173.594
- • -2095.382
- • -1875.1
- • -1382.329
- • -376.8072
- • -106.4257
- • -30.72289
- • 373.5944
- • 409.9398
- • 425.3012
- • 1896.988
- • 2414.257
- • 2588.052
- • 3121.185
-
-GCD:
- • GCD(10, 15) = 5
- • GCD(35, 10) = 5
- • GCD(31, 2) = 1
- • GCD(99, 12) = 3
 ```
