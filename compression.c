@@ -18,7 +18,6 @@ struct MinHeap *createMinH(unsigned capacity) {
   return minHeap;
 }
 
-
 // Function to swap
 void swapMinHNode(struct MinHNode **a, struct MinHNode **b) {
   struct MinHNode *t = *a;

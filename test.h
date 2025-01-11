@@ -7,11 +7,14 @@
 #include "hashes.h"
 #include "maths.h"
 #include "sort.h"
+#include "sha1.h"
 
 typedef struct {
   char *name;
   double value;
 } USMeasure;
+
+#define SHA1_TESTA "hijkijkljklmklmnlmnomnopnopq"
 
 USMeasure USMeasures[] = {
   {"football fields", 0.10972800},

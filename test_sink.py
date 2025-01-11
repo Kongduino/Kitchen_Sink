@@ -1,5 +1,5 @@
 from ctypes import *
-import platform
+import platform, random
 
 pl = platform.system()
 if pl == 'Darwin':
@@ -70,16 +70,61 @@ else:
 a = 10
 b = 15
 print(f"\nGCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+print(f"LCM({a}, {b}) = {kitchen_sink.basicLCM(a, b)}")
 a = 35
 b = 10
 print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+print(f"LCM({a}, {b}) = {kitchen_sink.basicLCM(a, b)}")
 a = 31
 b = 2
 print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+print(f"LCM({a}, {b}) = {kitchen_sink.basicLCM(a, b)}")
 a = 99
 b = 12
 print(f"GCD({a}, {b}) = {kitchen_sink.basicGCD(a, b)}")
+print(f"LCM({a}, {b}) = {kitchen_sink.basicLCM(a, b)}")
 
+yesno = ["no", "yes"]
+x = c_int(764587)
+rslt = kitchen_sink.isPrime(x)
+s = "prime"
+if rslt ==0:
+  s = "not " + s
+print(f"\n764587 is {s}")
+x = c_int(65536)
+rslt = kitchen_sink.isPrime(x)
+s = "prime"
+if rslt ==0:
+  s = "not " + s
+print(f"65536 is {s}")
+
+print(f"\nLeap Years:\n==============")
+years = { 1900, 1967, 1954, 1988, 2000, 2024 }
+for y in years:
+  rslt = kitchen_sink.isLeapYear(y)
+  rslt = yesno[rslt]
+  print(f"Is {y} a leap year: {rslt}")
+
+USMeasures = [
+  ["football fields", 0.10972800],
+  ["Smoots", 0.001702],
+  ["Florida 'gators", 0.0015494],
+  ["Boeing 787-9 airplanes", 0.0627888],
+  ["ski flying hills", .185],
+  ["bald eagle wingspans", 0.0023],
+  ["Grizzly bears", 0.0023876],
+  ["Bowie knives", 0.0004572],
+]
+
+print(f"\nHAVERSINE:\n=============");
+lat0 = 22.4
+lat1 = 22.4
+long0 = 113.9
+long1 = 114.0
+km = kitchen_sink.haversine(c_double(lat0), c_double(long0), c_double(lat1), c_double(long1), 1)
+mi = km / 1.609344
+x = USMeasures[random.randint(0, len(USMeasures))]
+print(f"Distance between {lat0}, {long0} and {lat1}, {long1}:\n • {km} km for normal people,\n • or for Muricans, {(km / x[1])} {x[0]} ({mi} mi)")
 
 myV = 9
 graph = [

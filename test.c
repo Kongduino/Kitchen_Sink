@@ -267,6 +267,22 @@ int main(int argc, char **argv) {
   printf("MD5 Hash:\n");
   hexDump(digest, 16);
 
+  printf("\nSHA1\n");
+  SHA1Context sha;
+  SHA1Reset(&sha);
+  SHA1Input(&sha, (const unsigned char *)SHA1_TESTA, strlen(SHA1_TESTA));
+  if (!SHA1Result(&sha)) {
+    fprintf(stderr, "ERROR-- could not compute message digest\n");
+  } else {
+    printf("\t");
+    for (int i = 0; i < 5; i++) {
+      printf("%X ", sha.Message_Digest[i]);
+    }
+    printf("\n");
+    printf("Should match:\n");
+    printf("\t80A10644 B10E579C 6241B958 FA98F129 7C035CD8\n");
+  }
+
   printf("\n\n\n\n");
   return 0;
 }
