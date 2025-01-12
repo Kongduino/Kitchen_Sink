@@ -292,7 +292,7 @@ MD5 Hash:
 ## Python Demo
 
 ```
-% python3 ./test_sink.py
+% python3 test_sink.py
 bubbleSortInt
 [89, 12, 33, 23, 127, 24, 10, 40]
 [10, 12, 23, 24, 33, 40, 89, 127]
@@ -315,9 +315,31 @@ recursiveBinarySearch
  • Element 41 is not present in array!
 
 GCD(10, 15) = 5
+LCM(10, 15) = 30
 GCD(35, 10) = 5
+LCM(35, 10) = 70
 GCD(31, 2) = 1
+LCM(31, 2) = 62
 GCD(99, 12) = 3
+LCM(99, 12) = 396
+
+764587 is prime
+65536 is not prime
+
+Leap Years:
+==============
+Is 2000 a leap year: yes
+Is 1954 a leap year: no
+Is 1988 a leap year: yes
+Is 2024 a leap year: yes
+Is 1900 a leap year: no
+Is 1967 a leap year: no
+
+HAVERSINE:
+=============
+Distance between 22.4, 113.9 and 22.4, 114.0:
+ • 0 km for normal people,
+ • or for Muricans, 0.0 Grizzly bears (0.0 mi)
 
 
 Graph:
@@ -348,4 +370,15 @@ Vertex 		Distance from source = {source}
    6 			9
    7 			8
    8 			14
+
+SHA1:
+• SHA1Context √ (size: 8 bytes)
+• SHA1Reset √
+• SHA1Input √
+• SHA1Result √
+
+• Hash:	80A10644 B10E579C 6241B958 FA98F129 7C035CD8
+Expecting:
+	80A10644 B10E579C 6241B958 FA98F129 7C035CD8
+Match!
 ```
