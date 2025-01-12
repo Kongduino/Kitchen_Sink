@@ -1,4 +1,5 @@
-/*
+ #include <stdio.h>
+ /*
  *  sha1.c
  *
  *	Copyright (C) 1998
@@ -96,15 +97,15 @@ void SHA1Reset(SHA1Context *context) {
  *  Comments:
  *
  */
-int SHA1Result(SHA1Context *context) {
+void SHA1Result(SHA1Context *context) {
   if (context->Corrupted) {
-    return 0;
-  }
-  if (!context->Computed) {
+    context->Computed = 0;
+    return;
+  } else if (!context->Computed) {
     SHA1PadMessage(context);
     context->Computed = 1;
+    return;
   }
-  return 1;
 }
 
 /*  
@@ -306,4 +307,14 @@ void SHA1PadMessage(SHA1Context *context) {
   context->Message_Block[62] = (context->Length_Low >> 8) & 0xFF;
   context->Message_Block[63] = (context->Length_Low) & 0xFF;
   SHA1ProcessMessageBlock(context);
+}
+
+void SHA1AllInOne(unsigned char *message_array, unsigned length, SHA1Context *sha) {
+  printf("• SHA1Context √ (size: %lu bytes)\n", sizeof(&sha));
+  SHA1Reset(sha);
+  printf("• SHA1Reset √\n");
+  SHA1Input(sha, (const unsigned char *)message_array, length);
+  printf("• SHA1Input √\n");
+  SHA1Result(sha);  
+  printf("• SHA1Result √\n");
 }

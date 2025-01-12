@@ -123,7 +123,7 @@ long0 = 113.9
 long1 = 114.0
 km = kitchen_sink.haversine(c_double(lat0), c_double(long0), c_double(lat1), c_double(long1), 1)
 mi = km / 1.609344
-x = USMeasures[random.randint(0, len(USMeasures))]
+x = USMeasures[random.randint(0, len(USMeasures)-1)]
 print(f"Distance between {lat0}, {long0} and {lat1}, {long1}:\n • {km} km for normal people,\n • or for Muricans, {(km / x[1])} {x[0]} ({mi} mi)")
 
 myV = 9
@@ -155,5 +155,29 @@ print("====================================================\n\n")
 print("\nVertex \t\tDistance from source = {source}\n")
 for i in range(0, myV):
   print(f"   {i} \t\t\t{distArr[i]}")
+
+print("\nSHA1:")
+SHA1_TESTA = b"hijkijkljklmklmnlmnomnopnopq"
+arr = (c_char * len(SHA1_TESTA))(*SHA1_TESTA)
+sha = b'\x00' * 104
+sha_arr = (c_char * 104)(*sha)
+kitchen_sink.SHA1AllInOne(arr, 28, sha_arr)
+s0 = "\n• Hash:\t"
+s = ""
+for i in range (0, 5):
+  n = i * 4
+  a = sha_arr[n : n + 4]
+  for j in range(0, 4):
+    p = ord(sha_arr[n + 3 - j])
+    s = s + f"{p:02X}"
+  s += " "
+s = s.strip()
+print(s0+s)
+print("Expecting:")
+print("\t80A10644 B10E579C 6241B958 FA98F129 7C035CD8")
+if (s == "80A10644 B10E579C 6241B958 FA98F129 7C035CD8"):
+  print("Match!")
+else:
+  print("Fail!")
 
 print("\n\n\n\n")

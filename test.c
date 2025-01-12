@@ -269,10 +269,15 @@ int main(int argc, char **argv) {
 
   printf("\nSHA1\n");
   SHA1Context sha;
+  printf("• SHA1Context √ (size: %lu bytes)\n", sizeof(sha));
   SHA1Reset(&sha);
+  printf("• SHA1Reset √\n");
   SHA1Input(&sha, (const unsigned char *)SHA1_TESTA, strlen(SHA1_TESTA));
-  if (!SHA1Result(&sha)) {
-    fprintf(stderr, "ERROR-- could not compute message digest\n");
+  printf("• SHA1Input √\n");
+  SHA1Result(&sha);
+  printf("• SHA1Result √\n");
+  if (!sha.Computed) {
+    printf("ERROR-- could not compute message digest\n");
   } else {
     printf("\t");
     for (int i = 0; i < 5; i++) {

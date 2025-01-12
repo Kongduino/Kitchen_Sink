@@ -42,7 +42,8 @@ typedef struct SHA1Context {
  *  Function Prototypes
  */
 void SHA1Reset(SHA1Context *);
-int SHA1Result(SHA1Context *);
-void SHA1Input( SHA1Context *, const unsigned char *, unsigned);
+void SHA1Result(SHA1Context *);
+void SHA1Input(SHA1Context *, const unsigned char *, unsigned);
+void SHA1AllInOne(unsigned char *message_array, unsigned length, SHA1Context *sha);
 
 #endif
