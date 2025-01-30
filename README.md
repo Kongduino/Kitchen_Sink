@@ -88,6 +88,40 @@ void quickSortDouble(double array[], int low, int high);
 int getMaxInt(int array[], int n);
 ```
 
+## Xojo API
+
+```
+* Public Function BubbleSort(arr() As Integer) As Integer()
+* Public Function BubbleSort(arr() As Double) As Double()
+* Public Function InsertionSort(arr() As Integer) As Integer()
+* Public Function InsertionSort(arr() As Double) As Double()
+* Public Function MergeSort(arr() As Integer) As Integer()
+* Public Function MergeSort(arr() As Double) As Double()
+* Public Function QuickSort(arr() As Integer) As Integer()
+* Public Function QuickSort(arr() As Double) As Double()
+* Public Function Code39_Native(myText As String, barWidth As Integer, barHeight As Integer) As Picture
+* Public Function djb2_hash(mb As MemoryBlock) As UInt32
+* Public Function djb2_native(mb As MemoryBlock) As UInt32
+* Public Sub FillRandomBuffer(buffer As MemoryBlock, len As Integer)
+* Public Sub flz(inFile As FolderItem, outFile As FolderItem)
+* Public Function GCD(a As Integer, b As Integer) As Integer
+* Public Function Haversine(lat1 As Double, long1 As Double, lat2 As Double, long2 As Double) As Double
+* Public Sub HexDump(mb As MemoryBlock)
+* Public Sub Install_Lib()
+* Public Function IsPrime(n As UInt64) As Boolean
+* Public Function iterBinSearch(arr() As Integer, x As Integer) As Integer
+* Public Function LeapYear(year As Integer) As Boolean
+* Public Function loselose_hash(mb As MemoryBlock) As UInt32
+* Public Function loselose_native(mb As MemoryBlock) As UInt32
+* Public Sub MidPointCircle(x_centre As Integer, y_centre As Integer, r As Integer, p As Picture, clr As Color)
+* Public Function mkPassword(Length As Integer) As String
+* Public Function recursiveBinSearch(arr() As Integer, x As Integer) As Integer
+* Public Function sdbm_hash(mb As MemoryBlock) As UInt32
+* Public Function sdbm_native(mb As MemoryBlock) As UInt32
+* Public Function sha1(mb As MemoryBlock) As MemoryBlock
+* Public Sub ShuffleBuffer(mb As MemoryBlock)
+```
+
 ## Xojo Demo
 
 ```
