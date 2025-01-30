@@ -121,7 +121,7 @@ lat0 = 22.4
 lat1 = 22.4
 long0 = 113.9
 long1 = 114.0
-km = kitchen_sink.haversine(c_double(lat0), c_double(long0), c_double(lat1), c_double(long1), 1)
+km = kitchen_sink.haversine(c_float(lat0), c_float(long0), c_float(lat1), c_float(long1), 1)
 mi = km / 1.609344
 x = USMeasures[random.randint(0, len(USMeasures)-1)]
 print(f"Distance between {lat0}, {long0} and {lat1}, {long1}:\n • {km} km for normal people,\n • or for Muricans, {(km / x[1])} {x[0]} ({mi} mi)")

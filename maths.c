@@ -1,4 +1,5 @@
 #include "maths.h"
+#include "hashes.h"
 
 // C program to print all primes smaller than or equal to
 // n using Sieve of Eratosthenes
@@ -99,4 +100,47 @@ float haversine(float lat1, float lon1, float lat2, float lon2, bool metric) {
   float c = 2 * atan2(sqrt(a), sqrt(1 - a));
   float d = R * c;
   return round(d * 100.0) / 100;
+}
+
+void shuffle(char* buff, int len) {
+  int i, j, a, b, n;
+  unsigned char x;
+  unsigned char *rnd;
+  j = len*3;
+  rnd = malloc(j);
+  fillRandom(rnd, j*2);
+  n = 0;
+  for (i = 0; i < j; i++) {
+    a = rnd[n++] % len;
+    b = rnd[n++] % len;
+    x = buff[a];
+    buff[a] = buff[b];
+    buff[b] = x;
+  }
+  free(rnd);
+}
+
+static const char alphabet[] = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+static const char diacritics[] = "!@#$%^&*()_+<>?:[]{}\\|;";
+void makePassword(char *pwd, int ln) {
+  int ln0 = sizeof(alphabet);
+  int ln1 = sizeof(diacritics);
+  int ln2 = ln/5; // How many chars from alphabet
+  int ln3 = ln-ln2; // how many chars from diacritics
+  unsigned char *buff, *dias;
+  buff = malloc(ln*3);
+  fillRandom(buff, ln*3);
+  dias = malloc(ln1);
+  memcpy(dias, diacritics, ln1);
+  shuffle((char*)dias, ln1);
+  hexDump(dias, ln1);
+  int i, px = 0;
+  unsigned char n;
+  for(i = 0; i < ln2; i++) {
+    n = buff[i] % ln0;
+    pwd[px++] = alphabet[n];
+  }
+  memcpy(pwd+px, dias, ln3);
+  shuffle(pwd+1, ln-1);
+  free(buff);
 }
