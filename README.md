@@ -126,202 +126,282 @@ int getMaxInt(int array[], int n);
 
 ```
 % ./test_sink
+Last login: Thu Jan 30 16:07:25 on ttys001
+/Users/dda/Coding/Xojo/Kitchen_Sink/Builds\ -\ Kitchen_Sink/macOS\ Universal/Kitchen_Sink_test/Kitchen_Sink_test ; exit;
+dda@Didiers-MacBook-Pro ~ % /Users/dda/Coding/Xojo/Kitchen_Sink/Builds\ -\ Kitchen_Sink/macOS\ Universal/Kitchen_Sink_test/Kitchen_Sink_test ; exit;
+Installing Lib
+Building Buffer
+Displaying Buffer
    +------------------------------------------------+ +----------------+
    |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
    +------------------------------------------------+ +----------------+
-00.|1b af 82 dc 86 1f dd 87 e1 bb 2f 2e fb f6 20 82 | |........../... .|
-01.|69 68 03 64 41 50 ff 79 0b b5 af f6 c3 07 0e 64 | |ih.dAP.y.......d|
-02.|38 3f 49 73 50 c1 51 df c4 f2 bf 25 23 0b 38 77 | |8?IsP.Q....%#.8w|
-03.|9d 76 d3 13 cd a1 e5 a5 67 f8 62 80 99 f3 f8 4b | |.v......g.b....K|
-04.|b8 b4 9c 09 91 7a be 26 a7 b5 c7 b9 ac 5e 80 e5 | |.....z.&.....^..|
-05.|49 5e e2 c1 5b af 6f fa 63 19 99 34 09 f6 c2 dd | |I^..[.o.c..4....|
-06.|dc be 59 22 f7 df 9b 3b a8 47 f7 b2 6e 91 8b 50 | |..Y"...;.G..n..P|
-07.|a8 b1 18 0f 75 a9 8a 50 b5 94 bb e0 c4 2f 01 00 | |....u..P...../..|
+00.|27 59 4b 32 38 53 87 a6 3e e3 39 1e 86 d2 f5 4b | |'YK28S..>.9....K|
+01.|07 e8 de 3a 8e 37 88 e7 5f 81 3d 4c 7f ad a5 db | |...:.7.._.=L...|
+02.|6b 66 b0 95 90 4d 4d 91 24 e8 f0 62 01 81 7e f0 | |kf...MM.$..b..~.|
+03.|07 7f 08 56 80 63 7d 81 28 6a 3b 97 0f a7 22 00 | |..V.c}.(j;...".|
    +------------------------------------------------+ +----------------+
-djb2: 0xFFA1BC019686B7C2
-sdbm: 0x74EEE863E93AA729
-lose lose: 0x000042FD
 
-764587 is prime
-65536 is not prime
+ • djb2 hash
+djb2: 0xF38F451A
+ • djb2 native hash
+djb2: 0xF38F451A
+ • Match!
 
-iterativeBinarySearch
- • Element 10 is present at index 3
- • Element 41 is not present in array!
+ • sdbm hash
+sdbm: 0x9FE492E3
+ • sdbm native hash
+sdbm: 0x9FE492E3
+ • Match!
 
-recursiveBinarySearch
- • Element 90 is not present in array!
- • Element 40 is present at index 7
+ • loselose hash
+loselose: 0x1C35
+ • loselose native hash
+loselose: 0x1C35
+ • Match!
 
-Before Bubble sorting arr1:
- • 89, 12, 33, 23, 127, 24, 10, 40
-After:
- • 10, 12, 23, 24, 33, 40, 89, 127
+97 is prime!
+98 is not prime!
 
-Before Insertion sorting arr11:
- • 89, 12, 33, 23, 127, 24, 10, 40
-After:
- • 10, 12, 23, 24, 33, 40, 89, 127
+ITERATIVE BINARY SEARCH:
+Looking for 10:
+ • 523 µs
+ • 10 found at position 2 [10]
+Looking for 41:
+ • 17 µs
+ • 41: not found!
 
-Before Merge sorting arr12:
- • 89, 12, 33, 23, 127, 24, 10, 40
-After:
- • 10, 12, 23, 24, 33, 40, 89, 127
+RECURSIVE BINARY SEARCH:
+Looking for 40:
+ • 10 microseconds
+ • 40 found at position 3 [40]
+Looking for 41:
+ • 15 microseconds
+ • 41: not found!
 
-Before Bubble sorting arr2:
- • 40.653, 2.100, 3.600, 1.400, 40.642
-After:
- • 1.400, 2.100, 3.600, 40.642, 40.653
+BubbleSort:
+ Before:
+ • 32596
+ • 3811
+ • 22537
+ • 26269
+ • 670
+ • -1996
+ • 27591
+ • 22731
+ • 17910
+ • 15488
+ • 17398
+ • 28344
+ • 25907
+ • 2500
+ • -1840
+ • 30159
+ • 11 microseconds
+ After:
+ • -1996
+ • -1840
+ • 670
+ • 2500
+ • 3811
+ • 15488
+ • 17398
+ • 17910
+ • 22537
+ • 22731
+ • 25907
+ • 26269
+ • 27591
+ • 28344
+ • 30159
+ • 32596
 
-Before Insertion sorting arr22:
- • 40.653, 2.100, 3.600, 1.400, 40.642
-After:
- • 1.400, 2.100, 3.600, 40.642, 40.653
+InsertionSort:
+ Before:
+ • -1996
+ • 17910
+ • -1840
+ • 670
+ • 32596
+ • 3811
+ • 30159
+ • 26269
+ • 25907
+ • 2500
+ • 15488
+ • 22731
+ • 28344
+ • 22537
+ • 27591
+ • 17398
+ • 14 microseconds
+ After:
+ • -1996
+ • -1840
+ • 670
+ • 2500
+ • 3811
+ • 15488
+ • 17398
+ • 17910
+ • 22537
+ • 22731
+ • 25907
+ • 26269
+ • 27591
+ • 28344
+ • 30159
+ • 32596
 
-Before Quick sorting arr23:
- • 40.653, 2.100, 3.600, 1.400, 40.642
-After:
- • 1.400, 2.100, 3.600, 40.642, 40.653
+MergeSort:
+ Before:
+ • 28344
+ • 25907
+ • 670
+ • 3811
+ • -1996
+ • 30159
+ • 27591
+ • -1840
+ • 22537
+ • 17398
+ • 17910
+ • 2500
+ • 15488
+ • 26269
+ • 22731
+ • 32596
+ • 11 microseconds
+ After:
+ • -1996
+ • -1840
+ • 670
+ • 2500
+ • 3811
+ • 15488
+ • 17398
+ • 17910
+ • 22537
+ • 22731
+ • 25907
+ • 26269
+ • 27591
+ • 28344
+ • 30159
+ • 32596
 
-GCD(10, 15) = 5
-LCM(10, 15) = 30
-GCD(35, 10) = 5
-LCM(35, 10) = 70
-GCD(31, 2) = 1
-LCM(31, 2) = 62
-GCD(99, 12) = 3
-LCM(99, 12) = 396
+QuickSort:
+ Before:
+ • 26269
+ • 30159
+ • 22731
+ • 27591
+ • 17910
+ • 28344
+ • 22537
+ • 17398
+ • 25907
+ • -1840
+ • 3811
+ • 15488
+ • -1996
+ • 2500
+ • 670
+ • 32596
+ • 10 microseconds
+ After:
+ • -1996
+ • -1840
+ • 670
+ • 2500
+ • 3811
+ • 15488
+ • 17398
+ • 17910
+ • 22537
+ • 22731
+ • 25907
+ • 26269
+ • 27591
+ • 28344
+ • 30159
+ • 32596
 
+BubbleSort:
+ Before:
+ • 1237.651
+ • 853.7149
+ • 1427.309
+ • 2549.9
+ • -2839.759
+ • 2764.759
+ • 550.502
+ • 1579.217
+ • -2392.47
+ • -860.1406
+ • -2255.12
+ • 497.5904
+ • 1739.157
+ • -251.7068
+ • -947.6908
+ • -2995.783
+ • 11 microseconds
+ After:
+ • -2995.783
+ • -2839.759
+ • -2392.47
+ • -2255.12
+ • -947.6908
+ • -860.1406
+ • -251.7068
+ • 497.5904
+ • 550.502
+ • 853.7149
+ • 1237.651
+ • 1427.309
+ • 1579.217
+ • 1739.157
+ • 2549.9
+ • 2764.759
 
-Graph:
-        0    1    2    3    4    5    7    8    9
-====================================================
- 0 |    0    4    0    0    0    0    0    8    0 |
- 1 |    4    0    8    0    0    0    0   11    0 |
- 2 |    0    8    0    7    0    4    0    0    2 |
- 3 |    0    0    7    0    9   14    0    0    0 |
- 4 |    0    0    0    9    0   10    0    0    0 |
- 5 |    0    0    4   14   10    0    2    0    0 |
- 6 |    0    0    0    0    0    2    0    1    6 |
- 7 |    8   11    0    0    0    0    1    0    7 |
- 8 |    0    0    2    0    0    0    6    7    0 |
-====================================================
-
-
-Vertex 		Distance from source = 0
-   0 			0
-   1 			4
-   2 			12
-   3 			19
-   4 			21
-   5 			11
-   6 			9
-   7 			8
-   8 			14
-
-Vertex 		Distance from source = 3
-   0 			19
-   1 			15
-   2 			7
-   3 			0
-   4 			9
-   5 			11
-   6 			13
-   7 			14
-   8 			9
-
-
- Char | Huffman code
-------|-------------
-  n   | 0000
-  d   | 00010000
-  g   | 000100010
-  o   | 000100011
-  o   | 0001001
-  n   | 000101
-  K   | 00011
-  n   | 001
-  i   | 01
-  u   | 1
-------|-------------
-
-Compressing kitchen_sink.dylib
-
-Decompressing kitchen_sink.flz
-
- Dictionaries
-==============
-My age is 28, and my name is Christian.
-My age is 56, and my name is Bobby.
-Christian's age at index 0 is 28
-Bobby's age at index 0 is 56
-No entry for label `salary`
-Yeah, yeah, yeah, I know... Dictionaries exist in Xojo and Python...
+GCD:
+ • GCD(10, 15) = 5
+ • GCD(35, 10) = 5
+ • GCD(31, 2) = 1
+ • GCD(99, 12) = 3
 
 Leap Years:
-==============
-Is 1900 a leap year: no
-Is 1967 a leap year: no
-Is 1954 a leap year: no
-Is 1988 a leap year: yes
-Is 2000 a leap year: yes
-Is 2024 a leap year: yes
+1900 is not a leap year.
+1954 is not a leap year.
+1967 is not a leap year.
+1988 is a leap year.
+2000 is a leap year.
+2024 is a leap year.
 
-Leap Years:
-==============
-Fact(-1): error!
-Fact(2): 2.000000
-Fact(5): 120.000000
-Fact(8): 40320.000000
-Fact(11): 39916800.000000
-Fact(14): 87178291200.000000
-Fact(17): 355687428096000.000000
-Fact(20): 2432902008176640000.000000
-Fact(23): 25852016738884978212864.000000
-Fact(26): 403291461126605650322784256.000000
-Fact(29): 8841761993739700772720181510144.000000
-Fact(32): 263130836933693517766352317727113216.000000
-Fact(35): 10333147966386144222209170348167175077888.000000
-Fact(38): 523022617466601037913697377988137380787257344.000000
-Fact(41): 33452526613163802763987613764361857922667238129664.000000
-Fact(44): 2658271574788448529134213028096241889243150262529425408.000000
 
-HAVERSINE:
-=============
-distance between 22.400000, 113.900002 and 22.400000, 114.000000:
- • 10.28 km for normal people,
- • or for Muricans, 163.72 Boeing 787-9 airplanes (6.39 mi)
+Haversine:
+Distance between 22.4, 113.9 and 22.4, 114 = 10.28 km, 6.387696 mi.
 
-MD5 TEST:
-Source:
-		 This is a short 32-char message
-MD5 Hash:
+Shuffle:
+==========
+Before:
    +------------------------------------------------+ +----------------+
    |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
    +------------------------------------------------+ +----------------+
-00.|4e fc 57 d3 68 b5 59 e9 d2 9a 4a 92 f7 79 04 1a | |N.W.h.Y...J..y..|
+00.|30 31 32 33 34 35 36 37 38 39 61 62 63 64 65 66 | |0123456789abcdef|
    +------------------------------------------------+ +----------------+
 
-Source:
+After:
    +------------------------------------------------+ +----------------+
    |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
    +------------------------------------------------+ +----------------+
-00.|1b af 82 dc 86 1f dd 87 e1 bb 2f 2e fb f6 20 82 | |........../... .|
-01.|69 68 03 64 41 50 ff 79 0b b5 af f6 c3 07 0e 64 | |ih.dAP.y.......d|
-02.|38 3f 49 73 50 c1 51 df c4 f2 bf 25 23 0b 38 77 | |8?IsP.Q....%#.8w|
-03.|9d 76 d3 13 cd a1 e5 a5 67 f8 62 80 99 f3 f8 4b | |.v......g.b....K|
-04.|b8 b4 9c 09 91 7a be 26 a7 b5 c7 b9 ac 5e 80 e5 | |.....z.&.....^..|
-05.|49 5e e2 c1 5b af 6f fa 63 19 99 34 09 f6 c2 dd | |I^..[.o.c..4....|
-06.|dc be 59 22 f7 df 9b 3b a8 47 f7 b2 6e 91 8b 50 | |..Y"...;.G..n..P|
-07.|a8 b1 18 0f 75 a9 8a 50 b5 94 bb e0 c4 2f 01 00 | |....u..P...../..|
-   +------------------------------------------------+ +----------------+
-MD5 Hash:
-   +------------------------------------------------+ +----------------+
-   |.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f | |      ASCII     |
-   +------------------------------------------------+ +----------------+
-00.|71 5a 4d a5 cf 2c db 0c 9e bd d5 3b f5 15 ce de | |qZM..,.....;....|
+00.|61 32 38 62 30 37 63 66 64 35 34 36 31 65 39 33 | |a28b07cfd5461e93|
    +------------------------------------------------+ +----------------+
 ```
+
+And pops open a Code39 image:
+
+![c39.png](c39.png)
+
 
 ## Python Demo
 
