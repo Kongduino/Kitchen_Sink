@@ -288,6 +288,16 @@ int main(int argc, char **argv) {
     printf("\t80A10644 B10E579C 6241B958 FA98F129 7C035CD8\n");
   }
 
+  printf("\nCode39\n");
+  n = c39GetSize(6);
+  printf("c39GetSize(6): %d\n", n);
+  char *buff = malloc(n);
+  int rs = createCode39("TERRAFORM", 9, buff);
+  printf("createCode39('terraform'): %d\n", rs);
+  printf("\nBuffer\n=============\n");
+  hexDump((unsigned char *)buff, rs);
+  free(buff);
+
   printf("\n\n\n\n");
   return 0;
 }

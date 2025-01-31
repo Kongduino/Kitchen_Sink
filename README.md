@@ -88,6 +88,15 @@ void quickSortDouble(double array[], int low, int high);
 int getMaxInt(int array[], int n);
 ```
 
+### Barcodes
+```
+* int c39GetSize(int ln);
+* int createCode39(char *myText, int ln, char *buffer);
+* bool qrcodegen_Text_Easy(char *myText, uint8_t qrcode[]);
+* int qrcodegen_getSize(const uint8_t qrcode[]);
+* bool qrcodegen_getModule(const uint8_t qrcode[], int x, int y);
+```
+
 ## Xojo API
 
 ```
@@ -120,6 +129,8 @@ int getMaxInt(int array[], int n);
 * Public Function sdbm_native(mb As MemoryBlock) As UInt32
 * Public Function sha1(mb As MemoryBlock) As MemoryBlock
 * Public Sub ShuffleBuffer(mb As MemoryBlock)
+* Public Function Code39_Native(myText As String, barWidth As Integer, barHeight As Integer) As Picture
+* Public Function Generate_QR(txt As String, ecl As Integer, minVersion As Integer, maxVersion As Integer, mask As Integer) As Picture
 ```
 
 ## Xojo Demo
@@ -401,6 +412,36 @@ After:
 And pops open a Code39 image:
 
 ![c39.png](c39.png)
+
+```
+QR Code:
+ • QRsize: 21
+##############  ####        ##############
+##          ##  ######  ##  ##          ##
+##  ######  ##  ##  ####    ##  ######  ##
+##  ######  ##    ####      ##  ######  ##
+##  ######  ##  ##  ##  ##  ##  ######  ##
+##          ##        ####  ##          ##
+##############  ##  ##  ##  ##############
+                    ######                
+##    ##############    ####    ##  ######
+              ########  ####      ####    
+##############  ##        ##        ######
+##    ######          ##  ##  ##    ##    
+        ##  ####  ##            ####  ##  
+                ##      ########  ##  ####
+##############  ######  ######  ##  ##    
+##          ##  ##    ########  ######  ##
+##  ######  ##  ####  ####    ##  ##  ##  
+##  ######  ##  ##    ##  ####            
+##  ######  ##    ########################
+##          ##          ##  ##############
+##############  ####  ########            
+```
+
+And pops open a QR Code image:
+
+![qr0.png](qr0.png)
 
 
 ## Python Demo

@@ -8,6 +8,7 @@
 #include "maths.h"
 #include "sort.h"
 #include "sha1.h"
+#include "code39.h"
 
 typedef struct {
   char *name;
