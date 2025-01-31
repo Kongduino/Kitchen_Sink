@@ -1,5 +1,6 @@
 from ctypes import *
-import platform, random
+import platform, random, sys
+from PIL import Image, ImageDraw, ImageFont
 
 pl = platform.system()
 if pl == 'Darwin':
@@ -179,5 +180,50 @@ if (s == "80A10644 B10E579C 6241B958 FA98F129 7C035CD8"):
   print("Match!")
 else:
   print("Fail!")
+
+n = kitchen_sink.c39GetSize(9)
+myText = b"Code39 Test"
+tLen = len(myText)
+print(f"c39GetSize(tLen): {n}")
+buffer = create_string_buffer(n)
+barWidth = 4
+barHeight = 120
+rs = kitchen_sink.createCode39(myText, tLen, buffer)
+print(f"createCode39: {rs}")
+if rs < 1:
+  print("Error!")
+  sys.exit(1)
+nChunks = int(rs/(tLen+2))
+print(f"Number of chunks per char: {nChunks}")
+w = 20 + 20 + (barWidth * rs)
+h = 20 + 20 + barHeight
+img = Image.new("RGB", (w, h)) 
+px = 20
+py = 20
+draw = ImageDraw.Draw(img)
+draw.rectangle([0, 0, w, h], fill = "#ffffff", outline = None, width = 1)
+charPos = []
+for i in range(0, rs):
+  c = buffer[i:i+1]
+  if c == b"x":
+    draw.rectangle([px, 20, px + barWidth - 1, 20 + barHeight], fill = "#000000", outline = None, width = 1)
+  xx = i % 9
+  if i > nChunks-1 and i < rs - nChunks + 1:
+    draw.rectangle([px, h-40, px + barWidth - 1, h], fill = "#ffffff", outline = None, width = 1)
+  px += barWidth
+  if i % nChunks == 0:
+    charPos.append(px)
+fnt = ImageFont.truetype("/System/Volumes/Data/usr/local/texlive/2024/texmf-dist/fonts/truetype/public/gnu-freefont/FreeMono.ttf", 40)
+charPos.append(px)
+px = 0
+print(charPos)
+for c in myText:
+  ppx = charPos[px+1]
+  ppx = ppx + int((charPos[px+2] - ppx) / 2)
+  print(f"Drawing {chr(c)} at {ppx}")
+  draw.text((ppx, h - 40), chr(c), font = fnt, fill = (0, 0, 0, 255))
+  px += 1
+
+img.show()
 
 print("\n\n\n\n")
