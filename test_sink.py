@@ -181,6 +181,7 @@ if (s == "80A10644 B10E579C 6241B958 FA98F129 7C035CD8"):
 else:
   print("Fail!")
 
+print("\n\nCode39:\n====================")
 n = kitchen_sink.c39GetSize(9)
 myText = b"Code39 Test"
 tLen = len(myText)
@@ -225,5 +226,36 @@ for c in myText:
   px += 1
 
 img.show()
+
+print("\n\nQR Code:\n=======\n")
+qr0 = bytes(3918) #qrcodegen_BUFFER_LEN_MAX
+qr0B = cast(qr0, POINTER(c_char))
+myText = b"Hello World!"
+myTextB = cast(myText, POINTER(c_char))
+ok = kitchen_sink.qrcodegen_Text_Easy(myTextB, qr0B)
+bw = 10
+qrsize = kitchen_sink.qrcodegen_getSize(qr0B)
+w = qrsize * bw + 20
+img = Image.new("RGB", (w, w)) 
+draw = ImageDraw.Draw(img)
+draw.rectangle([0, 0, w, w], fill = "white", outline = None, width = 1)
+py = 10
+for y in range(0, qrsize):
+  px = 10
+  s = "  "
+  for x in range(0, qrsize):
+    #print(f"    {x}: {kitchen_sink.qrcodegen_getModule(qr0, x, y)}")
+    if kitchen_sink.qrcodegen_getModule(qr0B, x, y) == 1:
+      draw.rectangle([px, py, px + bw, py + bw], fill = "black")
+      s += "##"
+    else:
+      draw.rectangle([px, py, px + bw, py + bw], fill = "white")
+      s += "  "
+    px += bw
+  print(s)
+  py += bw
+img.show()
+
+
 
 print("\n\n\n\n")

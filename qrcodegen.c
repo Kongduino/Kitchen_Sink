@@ -158,16 +158,15 @@ bool qrcodegen_encodeText(
   return qrcodegen_encodeSegmentsAdvanced(&seg, 1, ecl, minVersion, maxVersion, mask, boostEcl, tempBuffer, qrcode);
 
 fail:
-  qrcode[0] = 0;  // Set size to invalid value for safety
+  qrcode[0] = 0; // Set size to invalid value for safety
   return false;
 }
 
 bool qrcodegen_Text_Easy(char *myText, uint8_t qr0[]) {
   uint8_t tempBuffer[qrcodegen_BUFFER_LEN_MAX];
   return qrcodegen_encodeText(
-    myText,
-    tempBuffer, qr0, qrcodegen_Ecc_MEDIUM,
-    qrcodegen_VERSION_MIN, qrcodegen_VERSION_MAX,
+    myText, tempBuffer, qr0,
+    qrcodegen_Ecc_MEDIUM, qrcodegen_VERSION_MIN, qrcodegen_VERSION_MAX,
     qrcodegen_Mask_AUTO, true);
 }
 
