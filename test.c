@@ -309,6 +309,7 @@ int main(int argc, char **argv) {
   }
   bmp_img_write(&img, "test.bmp");
   bmp_img_free(&img);
+  system("open test.bmp");
 
   printf("\n\n\n\n");
   return 0;
