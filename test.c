@@ -298,6 +298,18 @@ int main(int argc, char **argv) {
   hexDump((unsigned char *)buff, rs);
   free(buff);
 
+  printf("\nBMP\n");
+  bmp_img img;
+  bmp_img_init_df(&img, 512, 512);
+  // Draw a checkerboard pattern:
+  for (size_t y = 0; y < 512; y++) {
+    for (size_t x = 0; x < 512; x++) {
+      bmp_pixel_init(&img.img_pixels[y][x], 255 * !(x & y), x ^ y, x | y);
+    }
+  }
+  bmp_img_write(&img, "test.bmp");
+  bmp_img_free(&img);
+
   printf("\n\n\n\n");
   return 0;
 }
