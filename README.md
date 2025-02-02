@@ -358,7 +358,7 @@ BMP
 
 Saves an image as `test.bmp`.
 
-![test.bmp](test.bmp)
+![test.bmp](Assets/test.bmp)
 
 ## Xojo API
 
@@ -674,7 +674,7 @@ After:
 
 And pops open a Code39 image:
 
-![c39.png](c39.png)
+![c39.png](Assets/c39.png)
 
 ```
 QR Code:
@@ -704,7 +704,7 @@ QR Code:
 
 And pops open a QR Code image:
 
-![qr0.png](qr0.png)
+![qr0.png](Assets/qr0.png)
 
 
 ## Python Demo
@@ -850,7 +850,7 @@ Drawing t at 576
 
 And pops open a Code39 image:
 
-![tmp1juvhaju.png](tmp1juvhaju.png)
+![tmp1juvhaju.png](Assets/tmp1juvhaju.png)
 
 ```
 
@@ -883,5 +883,5 @@ QR Code:
 
 And pops open a QR Code image:
 
-![tmplvswahnc.png](tmplvswahnc.png)
+![tmplvswahnc.png](Assets/tmplvswahnc.png)
 
