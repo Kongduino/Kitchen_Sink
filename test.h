@@ -10,6 +10,7 @@
 #include "sha1.h"
 #include "code39.h"
 #include "libbmp.h"
+#include "trie.h"
 
 typedef struct {
   char *name;

@@ -24,7 +24,7 @@ uint64_t randomint64() {
   return a;
 }
 
-void *fourTo32(uint64_t*what, uint8_t myKey[32]) {
+void fourTo32(uint64_t*what, uint8_t myKey[32]) {
   *(uint64_t*)myKey = what[3];
   memcpy(myKey + 24, myKey, 8);
   *(uint64_t*)myKey = what[2];
@@ -34,14 +34,14 @@ void *fourTo32(uint64_t*what, uint8_t myKey[32]) {
   *(uint64_t*)myKey = what[0];
 }
 
-void array2B64(uint8_t *src, uint8_t *dst, size_t *olen) {
+int array2B64(uint8_t *src, uint8_t *dst, size_t *olen) {
   memset(dst, 0, 64); // Belt & suspenders
-  uint8_t rslt = base64_encode(src, 32, dst);
+  return base64_encode(src, 32, dst);
 }
 
-void b642Array(uint8_t *src, uint8_t *dst, size_t *olen, size_t slen) {
+int b642Array(uint8_t *src, uint8_t *dst, size_t *olen, size_t slen) {
   memset(dst, 0, 32); // Belt & suspenders
-  uint8_t rslt = base64_decode((const unsigned char *)src, slen, dst);
+  return base64_decode((const unsigned char *)src, slen, dst);
 }
 
 void array2uint64_t(uint8_t src[32], uint64_t BobPublic[4]) {

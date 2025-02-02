@@ -238,6 +238,7 @@ qrsize = kitchen_sink.qrcodegen_getSize(qr0B)
 w = qrsize * bw + 20
 img = Image.new("RGB", (w, w)) 
 draw = ImageDraw.Draw(img)
+
 draw.rectangle([0, 0, w, w], fill = "white", outline = None, width = 1)
 py = 10
 for y in range(0, qrsize):
@@ -254,8 +255,7 @@ for y in range(0, qrsize):
     px += bw
   print(s)
   py += bw
+print("\n\n")
 img.show()
-
-
 
 print("\n\n\n\n")

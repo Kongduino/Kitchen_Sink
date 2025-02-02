@@ -1,5 +1,17 @@
 #include "test.h"
 
+void lookupTrie(struct trie *tRoot, struct trie *trie, char *word) {
+  int ret = 0;
+  printf("\n==========================================================\n • Looking for `%s`\n", word);
+  printf("********************* Possible Words ********************\n");
+  ret = trie_search(tRoot, word, strnlen(word, 100), &trie);
+  if (ret > -1) {
+    trie_print(trie, word, strnlen(word, 100));
+  } else
+    printf("No result...\n");
+  printf("==========================================================\n");
+}
+
 void printIntArray(int *arr, int n) {
   printf(" • %d", arr[0]);
   for (int ix = 1; ix < n; ix++) {
@@ -340,6 +352,40 @@ int main(int argc, char **argv) {
   bmp_img_write(&img, "test.bmp");
   bmp_img_free(&img);
   system("open test.bmp");
+
+  printf("\nTrie\n");
+  struct trie *tRoot = NULL;
+  struct trie *trie = NULL;
+  char word[101] = { 0 };
+  // Create a root trie
+  int ret = trie_new(&tRoot);
+  if (-1 == ret) {
+    fprintf(stderr, "Could not create trie\n");
+    exit(1);
+  }
+  // open the dictionary file
+  FILE *fp = fopen("trie_dictionary.txt", "r");
+  if (NULL == fp) {
+    fprintf(stderr, "Error while opening dictionary file");
+    exit(1);
+  }
+  printf(" • Inserting dictionary.");
+  // insert all the words from the dictionary
+  while (1 == fscanf(fp, "%100s\n", word)) {
+    ret = trie_insert(tRoot, word, strnlen(word, 100));
+    if (-1 == ret) {
+      fprintf(stderr, "Could not insert word into trie\n");
+      exit(1);
+    }
+  }
+  strcpy(word, "abbrev");
+  lookupTrie(tRoot, trie, word);
+  strcpy(word, "garda");
+  lookupTrie(tRoot, trie, word);
+  strcpy(word, "fulks");
+  lookupTrie(tRoot, trie, word);
+  strcpy(word, "attent");
+  lookupTrie(tRoot, trie, word);
 
   printf("\n\n\n\n");
   return 0;
