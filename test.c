@@ -296,12 +296,42 @@ int main(int argc, char **argv) {
   printf("createCode39('terraform'): %d\n", rs);
   printf("\nBuffer\n=============\n");
   hexDump((unsigned char *)buff, rs);
+  bmp_img c39img;
+  int w = (rs*4) + 20;
+  int h = 120;
+  int px, py, pw;
+  bmp_img_init_df(&c39img, w, h);
+  unsigned char cr, cg, cb;
+  for (px = 0; px < w; px++) {
+    for(py = 0; py < h; py++) {
+      bmp_pixel_init(&c39img.img_pixels[py][px], 255, 255, 255);
+    }
+  }
+  for (px = 0; px < rs; px++) {
+    char c = buff[px];
+    if (c == 'x') {
+      cr = 0;
+      cg = 0;
+      cb = 0;
+    } else {
+      cr = 255;
+      cg = 255;
+      cb = 255;
+    }
+    for(pw = 0; pw < 4; pw++) {
+      for(py = 10; py < 100; py++) {
+        bmp_pixel_init(&c39img.img_pixels[py][px*4+10+pw], cr, cg, cb);
+      }
+    }
+  }
+  bmp_img_write(&c39img, "c39.bmp");
+  bmp_img_free(&c39img);
   free(buff);
+  system("open c39.bmp");
 
   printf("\nBMP\n");
   bmp_img img;
   bmp_img_init_df(&img, 512, 512);
-  // Draw a checkerboard pattern:
   for (size_t y = 0; y < 512; y++) {
     for (size_t x = 0; x < 512; x++) {
       bmp_pixel_init(&img.img_pixels[y][x], 255 * !(x & y), x ^ y, x | y);
